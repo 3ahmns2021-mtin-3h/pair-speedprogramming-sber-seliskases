@@ -1,28 +1,28 @@
 # Template2D-Unity202015f1
 
 ### Project description: 
-Introduction/Project summary 
+This project is about spawning multiple kinds of flowers (currently coloured squares).
 
 ### Development platform: 
-(OS, Unity Version, Visual Studio Version, used SDKs)
+Visual Studio 2019, Unity Version 2020.1.5f1
 
 ### Target platform: 
-WebGL, Mobile, VR Device incl. reference resolution 
+/
 
 ### Visuals: 
-Screenshots (concept and experience), Video
+currently no screenshots or other material
 
 ### Necessary setup/execution steps: 
-Installation process, e.g. step by step instructions that I can run the project after cloning it
+clone the project onto your PC and run it with Unity 2020.1.5f1
 
 ### Third party material: 
-(if used Fonts, Sounds, Music, Graphics, Materials, Code etc.)
+currently none
 
 ### Project state: 
-incl. progress in percent
+80% done, spawn systen is currently not working properly
 
-### Limitations: 
+### Limitations: you need Unity 2020.1.5f1 to run the project
 
-### Lessons Learned: 
+### Lessons Learned: Simon is smarter than Simon
 
-Copyright by you :)
+Simon Eliskases and Simon M. Berger
