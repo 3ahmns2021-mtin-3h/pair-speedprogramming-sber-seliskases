@@ -4,30 +4,45 @@ using UnityEngine;
 
 public class SpawnSystem : MonoBehaviour
 {
-    public static void SpawnFlower(GameObject flower, Canvas canvas, float xResolution, float yResolution, Transform parent)
+    public static Vector2[] CalculateSpawnPoints(Canvas canvas, float xResolution, float yResolution)
     {
-        Vector2 leftTopCorner = new Vector2(canvas.pixelRect.width / -2, canvas.pixelRect.height / 2);
-        Vector2 rightTopCorner = new Vector2(canvas.pixelRect.width / 2, canvas.pixelRect.height / 2);
-        Vector2 leftBottomCorner = new Vector2(canvas.pixelRect.width / -2, canvas.pixelRect.height / -2);
-        Vector2 rightBottomCorner = new Vector2(canvas.pixelRect.width / 2, canvas.pixelRect.height / -2);
+        Vector2 leftTopCorner = new Vector2(canvas.pixelRect.width / -2, canvas.pixelRect.height / 2) * canvas.GetComponent<RectTransform>().localScale; ;
+        Vector2 rightTopCorner = new Vector2(canvas.pixelRect.width / 2, canvas.pixelRect.height / 2) * canvas.GetComponent<RectTransform>().localScale; ;
+        Vector2 leftBottomCorner = new Vector2(canvas.pixelRect.width / -2, canvas.pixelRect.height / -2) * canvas.GetComponent<RectTransform>().localScale;
+        Vector2 rightBottomCorner = new Vector2(canvas.pixelRect.width / 2, canvas.pixelRect.height / -2) * canvas.GetComponent<RectTransform>().localScale; 
 
-        float xSummand = (rightTopCorner.x - leftTopCorner.x) / (xResolution + 1);
-        float ySummand = (rightTopCorner.y - rightBottomCorner.y) / (yResolution + 1);
+        float xSummand = (rightTopCorner.x - leftTopCorner.x) / (xResolution - 1);
+        float ySummand = (rightTopCorner.y - rightBottomCorner.y) / (yResolution - 1);
 
         List<float> xCoordinates = new List<float>();
         List<float> yCoordinates = new List<float>();
         List<Vector2> spawnPoints = new List<Vector2>();
 
-        for(int x = 1; x <= xResolution; x++)
+        for(int i = 0; i < xResolution; i++)
         {
-            for(int y = 1; y <= yResolution; y++)
+            xCoordinates.Add(leftTopCorner.x + (xSummand * i));
+        }
+
+        for(int i = 0; i < yResolution; i++)
+        {
+            yCoordinates.Add(leftBottomCorner.y + (ySummand * i));
+        }
+
+        foreach(float x in xCoordinates)
+        {
+            foreach(float y in yCoordinates)
             {
                 spawnPoints.Add(new Vector2(x, y));
             }
         }
 
-        int spawnPointID = Random.Range(1, spawnPoints.Count);
-        GameObject spawnedObject = Instantiate(flower, spawnPoints[spawnPointID], Quaternion.identity);
-        spawnedObject.transform.parent = parent;
+        return spawnPoints.ToArray();
+    }
+
+    public static void SpawnFlower(GameObject flower, Color color, Vector2[] spawnPoints, Transform parent)
+    {
+        int spawnPointID = Random.Range(1, spawnPoints.Length);
+        GameObject spawnedObject = Instantiate(flower, spawnPoints[spawnPointID], Quaternion.identity, parent);
+        spawnedObject.GetComponent<SpriteRenderer>().color = color;
     }
 }
