@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             numSpace++;
-            time = 0;
+            time = 0; 
         }
 
         if (Input.GetKeyDown(KeyCode.K))

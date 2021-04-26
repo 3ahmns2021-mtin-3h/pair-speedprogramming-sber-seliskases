@@ -6,8 +6,8 @@ public class SpawnSystem : MonoBehaviour
 {
     public static Vector2[] CalculateSpawnPoints(Canvas canvas, float xResolution, float yResolution)
     {
-        Vector2 leftTopCorner = new Vector2(canvas.pixelRect.width / -2, canvas.pixelRect.height / 2) * canvas.GetComponent<RectTransform>().localScale; ;
-        Vector2 rightTopCorner = new Vector2(canvas.pixelRect.width / 2, canvas.pixelRect.height / 2) * canvas.GetComponent<RectTransform>().localScale; ;
+        Vector2 leftTopCorner = new Vector2(canvas.pixelRect.width / -2, canvas.pixelRect.height / 2) * canvas.GetComponent<RectTransform>().localScale;
+        Vector2 rightTopCorner = new Vector2(canvas.pixelRect.width / 2, canvas.pixelRect.height / 2) * canvas.GetComponent<RectTransform>().localScale;
         Vector2 leftBottomCorner = new Vector2(canvas.pixelRect.width / -2, canvas.pixelRect.height / -2) * canvas.GetComponent<RectTransform>().localScale;
         Vector2 rightBottomCorner = new Vector2(canvas.pixelRect.width / 2, canvas.pixelRect.height / -2) * canvas.GetComponent<RectTransform>().localScale; 
 
@@ -18,19 +18,19 @@ public class SpawnSystem : MonoBehaviour
         List<float> yCoordinates = new List<float>();
         List<Vector2> spawnPoints = new List<Vector2>();
 
-        for(int i = 0; i < xResolution; i++)
+        for (int i = 0; i < xResolution; i++)
         {
             xCoordinates.Add(leftTopCorner.x + (xSummand * i));
         }
 
-        for(int i = 0; i < yResolution; i++)
+        for (int i = 0; i < yResolution; i++)
         {
             yCoordinates.Add(leftBottomCorner.y + (ySummand * i));
         }
 
-        foreach(float x in xCoordinates)
+        foreach (float x in xCoordinates)
         {
-            foreach(float y in yCoordinates)
+            foreach (float y in yCoordinates)
             {
                 spawnPoints.Add(new Vector2(x, y));
             }
